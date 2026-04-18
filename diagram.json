@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "author": "Stress Watch Advanced",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-c3-devkitm-1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "board-ssd1306",
+      "id": "oled1",
+      "top": 300.74,
+      "left": 9.83,
+      "attrs": { "i2cAddress": "0x3c" }
+    },
+    { "type": "wokwi-ds1307", "id": "rtc1", "top": -150, "left": 150, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "gsr", "top": 171.5, "left": -182.6, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "hrv", "top": 30, "left": 200, "attrs": {} },
+    {
+      "type": "wokwi-ds18b20",
+      "id": "temp1",
+      "top": -68.33,
+      "left": -226.32,
+      "attrs": { "temperature": "14.2" }
+    },
+    { "type": "wokwi-mpu6050", "id": "imu1", "top": 200, "left": -60, "attrs": {} },
+    { "type": "wokwi-led", "id": "motor", "top": 54, "left": -197.8, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 147.95,
+      "left": -86.4,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-pushbutton-6mm",
+      "id": "btn1",
+      "top": -20,
+      "left": 180,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 71.15,
+      "left": -144,
+      "attrs": { "value": "4700" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:5V", "rtc1:5V", "red", [ "h0" ] ],
+    [ "esp:3V3.1", "gsr:VCC", "red", [ "h0" ] ],
+    [ "esp:3V3.2", "oled1:VCC", "red", [ "h0" ] ],
+    [ "esp:3V3.2", "hrv:VCC", "red", [ "h0" ] ],
+    [ "esp:3V3.2", "temp1:VCC", "red", [ "h0" ] ],
+    [ "esp:3V3.2", "imu1:VCC", "red", [ "h0" ] ],
+    [ "esp:8", "oled1:SDA", "green", [ "h0" ] ],
+    [ "esp:9", "oled1:SCL", "green", [ "h0" ] ],
+    [ "rtc1:SDA", "esp:8", "green", [ "h0" ] ],
+    [ "rtc1:SCL", "esp:9", "green", [ "h0" ] ],
+    [ "imu1:SDA", "esp:8", "green", [ "h0" ] ],
+    [ "imu1:SCL", "esp:9", "green", [ "h0" ] ],
+    [ "gsr:SIG", "esp:0", "yellow", [ "v0" ] ],
+    [ "hrv:SIG", "esp:1", "yellow", [ "v0" ] ],
+    [ "motor:A", "esp:10", "green", [ "v0" ] ],
+    [ "btn1:1.l", "esp:3", "blue", [ "h0" ] ],
+    [ "btn1:2.r", "esp:GND.10", "black", [ "h0" ] ],
+    [ "oled1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "rtc1:GND", "esp:GND.10", "black", [ "h0" ] ],
+    [ "hrv:GND", "esp:GND.8", "black", [ "v0" ] ],
+    [ "temp1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [
+      "esp:4",
+      "temp1:DQ",
+      "orange",
+      [
+        "v-0.3",
+        "h23.74",
+        "v96",
+        "h0",
+        "v48",
+        "h-86.4",
+        "v9.6",
+        "h-240",
+        "v-211.2",
+        "h28.8",
+        "v-9.6"
+      ]
+    ],
+    [ "r2:2", "esp:4", "violet", [ "v0", "h152.4", "v38.4" ] ],
+    [ "r2:1", "esp:3V3.2", "magenta", [ "v0" ] ],
+    [ "imu1:GND", "esp:GND.5", "black", [ "v0" ] ],
+    [ "gsr:GND", "esp:GND.4", "black", [ "v9.6", "h-48", "v-115.2" ] ],
+    [ "motor:C", "r1:1", "green", [ "v0" ] ],
+    [ "esp:GND.5", "r1:2", "black", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}
