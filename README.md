@@ -30,13 +30,20 @@ Building this prototype required bridging the gap between theoretical software a
 * **Environment Optimization:** Navigated local VS Code and PlatformIO toolchain instability via deep cache resets and Wokwi simulator integration.
 * **Hardware Interfacing:** Resolved "OneWire Ghost" errors (-127°C dead zones), I2C boot traps, and implemented internal pull-up resistor (INPUT_PULLUP) debouncing for floating GPIO states.
 
-## 💻 Installation & Setup (Simulation / Flashing)
-*(Add your specific PlatformIO or Arduino IDE installation steps here, e.g., library dependencies like `OneWire`, `DallasTemperature`, `Adafruit_MPU6050`)*
+## 💻 Simulation & Testing (Wokwi Web)
+Due to local toolchain instability, the v3.0 architecture was fully built and vetted using the cloud-based Wokwi Simulator. 
 
-1. Clone the repository: `git clone https://github.com/yourusername/biometric-watch.git`
-2. Open the project in VS Code with the PlatformIO extension.
-3. Ensure the ESP32-C3 board is selected in `platformio.ini`.
-4. Build and upload to the microcontroller.
+**To run the simulation:**
+1. Clone this repository or copy the `main.cpp` and `diagram.json` files.
+2. Open a new ESP32-C3 project on [Wokwi](https://wokwi.com/).
+3. Paste the contents of `diagram.json` into the Wokwi diagram editor to instantly map the exact hardware wiring.
+4. Replace the default code with `main.cpp`.
+
+**Required Libraries (Add via Wokwi Library Manager):**
+* `OneWire`
+* `DallasTemperature`
+* `Adafruit MPU6050`
+* `Adafruit SSD1306` (or whatever library you used for the OLED)
 
 ## 🔮 Future Roadmap
 * Refine physical chassis and custom PCB design.
