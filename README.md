@@ -6,7 +6,8 @@ This project is a custom wearable physiological stress monitor designed to track
 
 ## 🛠️ Hardware Stack
 * **Microcontroller:** ESP32-C3 (Low-power, Wi-Fi enabled for future OTA updates)
-* **Sensors:** * DS18B20 Temperature Sensor (Configured for 12-bit precision: 0.0625°C resolution)
+* **Sensors:**
+    * DS18B20 Temperature Sensor (Configured for 12-bit precision: 0.0625°C resolution)
     * MPU6050 6-DoF IMU (Motion artifact filtering)
     * Analog GSR & HRV Sensors
 * **Peripherals:** I2C OLED Display, RTC Module, Physical Override Button
